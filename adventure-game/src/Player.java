@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Player {
     private int damage;
     private int health;
+    private int originalHealth;
     private int money;
     private String name;
     private String charName;
@@ -43,16 +44,12 @@ public class Player {
             default:
                 initPlayer(new Samurai());
         }
-//        System.out.println(
-//                "Karakter : " + this.getCharName() +
-//                        ", Hasar : " + this.getDamage() +
-//                        ", Sağlık : " + this.getHealth() +
-//                        ", Para :" + this.getMoney());
     }
 
     public void initPlayer(GameChar gameChar) {
         this.setDamage(gameChar.getDamage());
         this.setHealth(gameChar.getHealth());
+        this.setOriginalHealth(gameChar.getHealth());
         this.setMoney(gameChar.getMoney());
         this.setCharName(gameChar.getName());
     }
@@ -83,6 +80,9 @@ public class Player {
     }
 
     public void setHealth(int health) {
+        if (health < 0){
+            health = 0;
+        }
         this.health = health;
     }
 
@@ -118,4 +118,11 @@ public class Player {
         this.inventory = inventory;
     }
 
+    public int getOriginalHealth() {
+        return originalHealth;
+    }
+
+    public void setOriginalHealth(int originalHealth) {
+        this.originalHealth = originalHealth;
+    }
 }
